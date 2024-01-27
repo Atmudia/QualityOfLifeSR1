@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\komik\Downloads\QoL Mod-462-1-0-1679600501\QoLMod.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3352207-B487-4C81-8C0F-EBBF8229144E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>QoLMod</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>QoLMod</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DecorizerLink.cs" />
+    <Compile Include="HouseUI\HouseMenuUIPatch.cs" />
+    <Compile Include="MarketLinkActivator.cs" />
+    <Compile Include="EntryPoint.cs" />
+    <Compile Include="Configs.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="MultiTeleportDestination.cs" />
+    <Compile Include="TeleporterInventoryItem.cs" />
+    <Compile Include="ProgressDirectorCheckBlueprintUpgradesPatch.cs" />
+    <Compile Include="SiloInterfaceUpgrader.cs" />
+    <Compile Include="SiloUIActivator.cs" />
+    <Compile Include="SecretStyleButtons\SlimeAppearanceUIAwakePatch.cs" />
+    <Compile Include="SecretStyleButtons\SlimeAppearanceUIShowTutorialPatch.cs" />
+    <Compile Include="SecretStyleButtons\SlimeAppearanceUIHideTutorialPatch.cs" />
+    <Compile Include="OffTarrMusicOption\OptionsUIAwakePatch.cs" />
+    <Compile Include="OffTarrMusicOption\MusicDirectorSetTarrMode.cs" />
+    <Compile Include="GadgetScrapper\PurchaseUISelectPatch.cs" />
+    <Compile Include="GadgetScrapper\ScrapperUI.cs" />
+    <Compile Include="CycleExtractor\TargetingUIPatch.cs" />
+    <Compile Include="Beacon\BeaconActivator.cs" />
+    <Compile Include="Beacon\BeaconDisplayOnMap.cs" />
+    <Compile Include="Beacon\BeaconGadget.cs" />
+    <Compile Include="Beacon\BeaconGadgetModel.cs" />
+    <Compile Include="Beacon\MapDataEntryIsZoneLocked.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Beacons\iconBeaconAmber.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconAqua.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconBase.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconBerry.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconBlack.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconBlue.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconButterscotch.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconCocoa.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconGlitch.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconGold.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconGreen.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconGrey.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconLavander.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconMint.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconOrange.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconPink.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconRed.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconSilver.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconTan.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconTeal.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconViolet.png" />
+    <EmbeddedResource Include="Images\Beacons\iconBeaconWhite.png" />
+    <EmbeddedResource Include="Images\iconGadgetDecorizerLink.png" />
+    <EmbeddedResource Include="Images\iconGadgetScrap.png" />
+    <EmbeddedResource Include="Images\iconGadgetTeleportMulti.png" />
+    <EmbeddedResource Include="modinfo.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Libs\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetsLib">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Mods\AssetsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SRML">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\SRML-Publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
