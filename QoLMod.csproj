@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!--Project was exported from assembly: C:\Users\komik\Downloads\QoL Mod-462-1-0-1679600501\QoLMod.dll-->
+  <Import Project="packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.props" Condition="Exists('packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E3352207-B487-4C81-8C0F-EBBF8229144E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>QoLMod</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <FileAlignment>512</FileAlignment>
     <RootNamespace>QoLMod</RootNamespace>
@@ -32,23 +33,27 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>cp "/HDD/Modding/SlimeRancher/SR1/QoLMod/bin/Debug/QoLMod.dll"  "/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SRML/Mods/"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>echo $(OutDir)</PreBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DecorizerLink.cs" />
+    <Compile Include="HarmonyPatches.cs" />
     <Compile Include="HouseUI\HouseMenuUIPatch.cs" />
     <Compile Include="MarketLinkActivator.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Configs.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="MultiTeleportDestination.cs" />
+    <Compile Include="SecretStyleButtons\Patch_SlimeAppearanceUI.cs" />
     <Compile Include="TeleporterInventoryItem.cs" />
     <Compile Include="ProgressDirectorCheckBlueprintUpgradesPatch.cs" />
     <Compile Include="SiloInterfaceUpgrader.cs" />
     <Compile Include="SiloUIActivator.cs" />
-    <Compile Include="SecretStyleButtons\SlimeAppearanceUIAwakePatch.cs" />
-    <Compile Include="SecretStyleButtons\SlimeAppearanceUIShowTutorialPatch.cs" />
-    <Compile Include="SecretStyleButtons\SlimeAppearanceUIHideTutorialPatch.cs" />
-    <Compile Include="OffTarrMusicOption\OptionsUIAwakePatch.cs" />
-    <Compile Include="OffTarrMusicOption\MusicDirectorSetTarrMode.cs" />
+    <Compile Include="OffTarrMusicOption\Patch_OptionsUI_Awake.cs" />
+    <Compile Include="OffTarrMusicOption\Patch_MusicDirector_SetTarrMode.cs" />
     <Compile Include="GadgetScrapper\PurchaseUISelectPatch.cs" />
     <Compile Include="GadgetScrapper\ScrapperUI.cs" />
     <Compile Include="CycleExtractor\TargetingUIPatch.cs" />
@@ -58,6 +63,7 @@
     <Compile Include="Beacon\BeaconGadgetModel.cs" />
     <Compile Include="Beacon\MapDataEntryIsZoneLocked.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Images\Beacons\iconBeaconAmber.png" />
     <EmbeddedResource Include="Images\Beacons\iconBeaconAqua.png" />
@@ -88,57 +94,72 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Libs\0Harmony.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher\SRML\Libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Assembly-CSharp-Publicized.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="AssetsLib">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Mods\AssetsLib.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher\SRML\Mods\AssetsLib.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\DOTween.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SRML\Libs\Newtonsoft.Json.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher\SRML\Libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SRML">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\SRML-Publicized.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/SRML.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\..\..\SteamLibrary\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>/home/komik/.local/share/Steam/steamapps/common/Slime Rancher/SlimeRancher_Data/Managed/UnityEngine.UIModule.dll</HintPath>
     </Reference>
+    <Publicize Include="Assembly-CSharp" IncludeCompilerGeneratedMembers="false"/>
+    <Publicize Include="SRML" IncludeCompilerGeneratedMembers="false" />
+
+
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="README.md" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.props'))" />
+    <Error Condition="!Exists('packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.targets'))" />
+  </Target>
+  <Import Project="packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.targets" Condition="Exists('packages\Krafs.Publicizer.2.2.1\build\Krafs.Publicizer.targets')" />
 </Project>

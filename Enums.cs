@@ -13,7 +13,6 @@ namespace QoLMod
     public static Gadget.Id TELEPORTER_MULTI;
     [GadgetCategorization(GadgetCategorization.Rule.NONE)]
     public static Gadget.Id BEACON_GADGET;
-    public static SiloCatcher.Type DECORIZER_LINK_CATCHER;
     public static LandPlot.Upgrade SILO_INTERFACE;
   }
 }

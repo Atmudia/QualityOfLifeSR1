@@ -53,17 +53,17 @@ namespace QoLMod.HouseUI
         {
             if (@this.sleeping)
             {
-                Debug.Log((object) "Attempted to sleep while sleeping. Ignore.");
+                Debug.Log("Attempted to sleep while sleeping. Ignore.");
             }
             else
             {
                 AnalyticsUtil.CustomEvent("PlayerSlept");
                 @this.sleeping = true;
                 @this.timeDir.Unpause(false);
-                @this.beatrixImg.DOFade(0.0f, 0.5f).SetUpdate<TweenerCore<Color, Color, ColorOptions>>(true);
+                @this.beatrixImg.DOFade(0.0f, 0.5f).SetUpdate(true);
                 SRSingleton<LockOnDeath>.Instance.LockUntil(hours, 0.0f, (UnityAction) (() =>
                 {
-                    @this.beatrixImg.DOFade(1f, 0.5f).SetUpdate<TweenerCore<Color, Color, ColorOptions>>(true);
+                    @this.beatrixImg.DOFade(1f, 0.5f).SetUpdate(true);
                     @this.timeDir.Pause(false);
                     @this.sleeping = false;
                 }));

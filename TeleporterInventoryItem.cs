@@ -34,10 +34,11 @@ namespace QoLMod
 
     void IInventoryItem.RefreshEntry(GameObject gO)
     {
+      
       string str = string.Empty;
-      if (ZoneDirector.zonePediaIdLookup.ContainsKey(zoneId))
-        str = " (" + SRSingleton<GameContext>.Instance.MessageDirector.GetBundle("pedia").Get("t." + ZoneDirector.zonePediaIdLookup[zoneId].ToString().ToLowerInvariant()) + ")";
-      gO.transform.Find("Content/Name").GetComponent<TMP_Text>().text = SRSingleton<GameContext>.Instance.MessageDirector.Get("pedia", "m.gadget.name." + gadgetId.ToString().ToLowerInvariant()) + str;
+      if (ZoneDirector.zonePediaIdLookup.TryGetValue(zoneId, out var value))
+        str = " (" + SRSingleton<GameContext>.Instance.MessageDirector.Get("pedia", "t." + value.ToString().ToLowerInvariant()) + ")";
+      gO.transform.Find("Content/Name").GetComponent<TMP_Text>().text = Gadget.GetName(gadgetId) + str;
       gO.transform.Find("Content/Icon").GetComponent<Image>().sprite = sprite;
       gO.transform.Find("CountsOuterPanel/CountsPanel/Counts").transform.parent.gameObject.SetActive(false);
     }

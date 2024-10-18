@@ -20,18 +20,18 @@ namespace QoLMod
     {
       if (!PhysicsUtil.IsPlayerMainCollider(collider))
         return;
-      StartCoroutine(CreateAUI());
+      StartCoroutine(CreateUI());
     }
 
-    private IEnumerator CreateAUI()
+    private IEnumerator CreateUI()
     {
       yield return new WaitForEndOfFrame();
       inventoryItems.Clear();
-      foreach (TeleportDestination teleportDestination1 in teleportNetwork.destinationLookup.SelectMany<KeyValuePair<string, TeleportNetwork.Destination>, TeleportDestination>(x => x.Value.exits))
+      foreach (TeleportDestination teleportDestination1 in teleportNetwork.destinationLookup.SelectMany(x => x.Value.exits))
       {
         TeleportDestination teleportDestination = teleportDestination1;
         Gadget gadget = teleportDestination.transform.GetComponentInParent<Gadget>(true);
-        if (gadget != null)
+        if (gadget)
         {
           TeleporterInventoryItem teleporterInventoryItem = new TeleporterInventoryItem(gadget.id, gadget.id.GetGadgetDefinition().icon, teleportDestination.GetComponentInParent<ZoneDirector>(true).zone, () =>
           {
@@ -44,15 +44,9 @@ namespace QoLMod
             return true;
           });
           inventoryItems.Add(teleporterInventoryItem);
-          gadget = null;
-          teleporterInventoryItem = null;
         }
       }
-      GameObject inventoryUI = UIUtils.CreateInventoryUI("t.multiteleporter", PediaDirector.Id.WARP_TECH.GetIcon(), inventoryItems, true, null);
-    }
-
-    public void OnTriggerExit(Collider collider)
-    {
+      UIUtils.CreateInventoryUI("t.multiteleporter", PediaDirector.Id.WARP_TECH.GetIcon(), inventoryItems, true, null);
     }
   }
 }

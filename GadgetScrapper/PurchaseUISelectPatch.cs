@@ -23,7 +23,7 @@ namespace QoLMod.GadgetScrapper
 
     public static GameObject CreateCost(PurchaseUI instance, GadgetDefinition.CraftCost cost)
     {
-      GameObject cost1 = Object.Instantiate<GameObject>(instance.costListItemPrefab);
+      GameObject cost1 = Object.Instantiate(instance.costListItemPrefab);
       TMP_Text component1 = cost1.transform.Find("Content/Name").gameObject.GetComponent<TMP_Text>();
       Image component2 = cost1.transform.Find("Content/Icon").gameObject.GetComponent<Image>();
       TMP_Text component3 = cost1.transform.Find("CountsOuterPanel/CountsPanel/Counts").gameObject.GetComponent<TMP_Text>();

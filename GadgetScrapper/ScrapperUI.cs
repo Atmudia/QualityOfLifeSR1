@@ -62,13 +62,13 @@ namespace QoLMod.GadgetScrapper
           purchasableList1.Add(key);
           cachedCraftCost.Add(key, entryCraftCosts);
           categoryMap[str] = entry.pediaLink.ToString().ToLowerInvariant();
-          List<PurchaseUI.Purchasable> purchasableList2 = dict.Get<PediaDirector.Id, List<PurchaseUI.Purchasable>>(entry.pediaLink) ?? new List<PurchaseUI.Purchasable>();
+          List<PurchaseUI.Purchasable> purchasableList2 = dict.Get(entry.pediaLink) ?? new List<PurchaseUI.Purchasable>();
           purchasableList2.Add(key);
           dict[entry.pediaLink] = purchasableList2;
         }
       }
       GameObject purchaseUi = SRSingleton<GameContext>.Instance.UITemplates.CreatePurchaseUI(EntryPoint.CreateSpriteFromImage("iconGadgetScrap"), MessageUtil.Qualify("ui", "t.scrap_gadget"), purchasableList1.ToArray(), true, new PurchaseUI.OnClose(Close));
-      List<PurchaseUI.Category> list = PediaUI.SCIENCE_ENTRIES.Where(key => dict.ContainsKey(key)).Select<PediaDirector.Id, PurchaseUI.Category>(key => new PurchaseUI.Category(key.ToString().ToLowerInvariant(), dict[key].ToArray())).ToList<PurchaseUI.Category>();
+      List<PurchaseUI.Category> list = PediaUI.SCIENCE_ENTRIES.Where(key => dict.ContainsKey(key)).Select(key => new PurchaseUI.Category(key.ToString().ToLowerInvariant(), dict[key].ToArray())).ToList();
       purchaseUI = purchaseUi.GetComponent<PurchaseUI>();
       purchaseUI.SetCategories(list);
       purchaseUI.SetPurchaseMsgs("b.scrap_gadget", "b.sold_out");

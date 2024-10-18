@@ -1,30 +1,25 @@
 using HarmonyLib;
+using SRML.SR.Patches;
 using UnityEngine;
 
 namespace QoLMod.CycleExtractor
 {
-  [HarmonyPatch(typeof (TargetingUI)), HarmonyPatch("GetIdentifiableTarget")]
-  public static class TargetingUIPatch
+  [HarmonyPatch(typeof(TargetingUI), nameof(TargetingUI.GetIdentifiableTarget))]
+  public static class TargetingUIGetIdentifiableTargetPatch
   {
-    public static int remainingCycle;
-    [HarmonyPrefix]
-    public static void GetIdentifiableTarget(TargetingUI __instance, GameObject gameObject, ref bool __result)
+    public static void Postfix(TargetingUI __instance, GameObject gameObject, ref bool __result)
     {
       if (__result)
-        return;
-      Extractor component1 = __instance.GetComponent<Extractor>();
-      if (component1 == null)
+          return;
+      Extractor extractor = gameObject.GetComponent<Extractor>();
+      if (extractor)
       {
-        remainingCycle = 0;
-      }
-      else
-      {
-        Gadget component2 = gameObject.GetComponent<Gadget>();
-        remainingCycle = component1.model.cyclesRemaining;
-        __instance.nameText.text = __instance.pediaBundle.Get("m.gadget.name." + component2.id.ToString().ToLowerInvariant());
-        __instance.infoText.text = __instance.uiBundle.Get("m.cycle_of_gadget", component1.model.cyclesRemaining);
-        __result = true;
+        Gadget gadget = gameObject.GetComponent<Gadget>();
+        __instance.nameText.text = Gadget.GetName(gadget.id);
+        __instance.infoText.text = __instance.uiBundle.Get("m.cycle_of_gadget", extractor.model.cyclesRemaining);
+        __result = true;      
       }
     }
   }
+
 }

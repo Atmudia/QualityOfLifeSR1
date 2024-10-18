@@ -9,9 +9,9 @@ namespace QoLMod
 
     public override GameObject Activate()
     {
-      if (basePrefab == null)
+      if (!basePrefab)
         basePrefab = GameObject.Find("zoneRANCH/cellRanch_Home/Sector/Ranch Features/techMarket/techActivator(Clone)/triggerActivate").GetComponent<UIActivator>().uiPrefab;
-      if (uiPrefab == null)
+      if (!uiPrefab)
         uiPrefab = basePrefab;
       return base.Activate();
     }

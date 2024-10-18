@@ -2,6 +2,7 @@
 using MonomiPark.SlimeRancher.DataModel;
 using SRML.SR.SaveSystem;
 using System.IO;
+using SRML.Console;
 using UnityEngine;
 
 namespace QoLMod.Beacon
@@ -17,6 +18,9 @@ namespace QoLMod.Beacon
 
     public void WriteData(BinaryWriter writer) => writer.Write(BeaconName);
 
-    public void LoadData(BinaryReader reader) => BeaconName = reader.ReadString();
+    public void LoadData(BinaryReader reader)
+    {
+      BeaconName = reader.ReadString();
+    }
   }
 }

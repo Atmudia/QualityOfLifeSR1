@@ -17,7 +17,7 @@ namespace QoLMod
     public override bool CanActivate()
     {
       allSlots = new Dictionary<Identifiable.Id, int>();
-      foreach (Ammo.Slot slot in storage.model.siloAmmo.SelectMany<KeyValuePair<SiloStorage.StorageType, AmmoModel>, Ammo.Slot>(x => x.Value.slots))
+      foreach (Ammo.Slot slot in storage.model.siloAmmo.SelectMany(x => x.Value.slots))
       {
         if (slot != null && !Identifiable.IsSlime(slot.id) && !Identifiable.IsLargo(slot.id) && !Identifiable.IsTarr(slot.id))
         {
@@ -33,7 +33,7 @@ namespace QoLMod
     public override GameObject Activate()
     {
       BaseUI baseUI = null;
-      List<IdentInventoryItem> list = allSlots.Select<KeyValuePair<Identifiable.Id, int>, IdentInventoryItem>(keyValue => new IdentInventoryItem(keyValue.Key, keyValue.Value, () =>
+      List<IdentInventoryItem> list = allSlots.Select(keyValue => new IdentInventoryItem(keyValue.Key, keyValue.Value, () =>
       {
         if (!SRSingleton<SceneContext>.Instance.PlayerState.Ammo.MaybeAddToSlot(keyValue.Key, keyValue.Key.GetPrefab().GetComponent<Identifiable>()))
           return false;
@@ -42,7 +42,7 @@ namespace QoLMod
         if (CanActivate())
           Activate();
         return true;
-      })).ToList<IdentInventoryItem>();
+      })).ToList();
       baseUI = UIUtils.CreateInventoryUI("t.silo", PediaDirector.Id.SILO.GetIcon(), list, false, null).GetComponent<BaseUI>();
       return baseUI.gameObject;
     }

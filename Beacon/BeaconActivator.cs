@@ -19,11 +19,11 @@ namespace QoLMod.Beacon
     public override GameObject Activate()
     {
       GameObject purchaseUI = null;
-      purchaseUI = SRSingleton<GameContext>.Instance.UITemplates.CreatePurchaseUI(PersistentKeysWithSprites["iconBeaconBase"], "t.beacon", PersistentKeysWithSprites.Values.Select<Sprite, PurchaseUI.Purchasable>(sprite => new PurchaseUI.Purchasable("m.beacon.name." + sprite.name.Replace("iconBeacon", string.Empty).ToLowerInvariant(), sprite, sprite, "m.beacon.desc", 0, new PediaDirector.Id?(), () =>
+      purchaseUI = SRSingleton<GameContext>.Instance.UITemplates.CreatePurchaseUI(PersistentKeysWithSprites["iconBeaconBase"], "t.beacon", PersistentKeysWithSprites.Values.Select(sprite => new PurchaseUI.Purchasable("m.beacon.name." + sprite.name.Replace("iconBeacon", string.Empty).ToLowerInvariant(), sprite, sprite, "m.beacon.desc", 0, new PediaDirector.Id?(), () =>
       {
         BeaconGadget?.SetBeacon(sprite.name);
         purchaseUI.GetComponent<PurchaseUI>().Rebuild(true);
-      }, () => true, () => !BeaconGadget.IsSelectedBeacon(sprite.name))).ToArray<PurchaseUI.Purchasable>(), false, () => { }, true);
+      }, () => true, () => !BeaconGadget.IsSelectedBeacon(sprite.name))).ToArray(), false, () => { }, true);
       purchaseUI.GetComponent<PurchaseUI>().SetPurchaseMsgs("b.select", "b.already_selected");
       return purchaseUI;
     }

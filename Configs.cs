@@ -3,7 +3,7 @@ using SRML.Config.Attributes;
 
 namespace QoLMod
 {
-  [ConfigFile("CONFIG", "CONFIG")]
+  [ConfigFile("CONFIG")]
   public static class Configs
   {
     [ConfigComment("It's only used for saving")]
